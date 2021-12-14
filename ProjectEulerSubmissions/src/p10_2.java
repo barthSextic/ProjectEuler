@@ -15,25 +15,26 @@ public class p10_2 {
 		container = new boolean[lim + 1];
 		build(lim);
 		count(math(container));
-		System.out.println(sum - 1);
+		System.out.println(sum);
 	} // main
 	private static void build(int x) {
-		for(int i = 0; i <= x; ++i) {
+		for(int i = 2; i <= x; ++i) {
 			container[i] = true;
 		}
 	} // build
 	private static boolean[] math(boolean[] x) {
+		// Need to work in long data types or we'll wrap around the int limit
 		half = x.length / 2;
-		for (int i = 2; i <= half; ++i) {
-			for (int j = i; j <= half; ++j) {
+		for (long i = 2; i <= half; ++i) {
+			for (long j = i; j <= half; ++j) {
 				try {
-				if (i*j < x.length) {
-					x[i*j] = false;
-				} else {
-					break;
-				} // if else
+					if (i*j < x.length) {
+						x[(int) (i*j)] = false;
+					} else {
+						break;
+					} // if else
 				} catch(Exception e) {
-					
+					System.out.println(i*j);
 				} // try catch
 			}
 		}
